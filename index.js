@@ -79,7 +79,8 @@ function updateDisplay(datas) {
         }</h3>
   <p class="card-body p-3">${data.body.slice(0, 20)}</p>
  <button id="del" class="btn btn-primary remove mx-auto my-2" >remove</button>
-  <a href="#" id="edit" class="text-primary remove mx-auto my-2" >view more</a>
+  <a href="#" id="view" class="text-primary remove mx-auto my-2" >view more</a>
+     <a href="#" id="edit" class="text-primary remove mx-auto my-2" >Edit</a>
 </div>`;
     });
     result.innerHTML = item;
@@ -89,16 +90,17 @@ function runResult(data) {
     result.addEventListener("click", (e) => {
         e.preventDefault();
         let btndel = e.target.id == "del";
+        let viewbtn = e.target.id == "view";
         let editbtn = e.target.id == "edit";
         let id = e.target.parentElement.dataset.id;
         //remove post
         if (btndel) {
             axios.delete(`${url}/${id}`).then(() => console.log("deleted"));
-            console.log(data);
+
             let newData = data.filter((item) => item.id != id);
             updateDisplay(newData);
         }
-        if (editbtn) {
+        if (viewbtn) {
             let newData = data.find((item) => item.id == id);
             console.log(newData);
             let item = "";
@@ -112,6 +114,9 @@ function runResult(data) {
             viewMore.innerHTML = item;
             viewMore.classList.remove("view-more-page");
             viewMore.classList.add("translated");
+        }
+        if (editbtn) {
+            updateBlogPost(id);
         }
     });
 }
@@ -139,7 +144,8 @@ form.addEventListener("submit", (e) => {
         <h3 class="card-title bg-primary text-white p-3 m-0 rounded">${data.title}</h3>
   <p class="card-body p-3">${data.body}</p>
  <button id="del" class="btn btn-primary remove mx-auto my-2" >remove</button>
-  <a href="#" id="edit" class="text-primary remove mx-auto my-2" >view more</a>
+  <a href="#" id="view" class="text-primary remove mx-auto my-2" >view more</a>
+   <a href="#" id="edit" class="text-primary remove mx-auto my-2" >Edit</a>
 </div>`;
             });
             result.innerHTML += item;
@@ -166,4 +172,42 @@ function delPost(id) {
     console.log(data);
     let newData = data.filter((item) => item.id != id);
     console.log(newData);
+}
+
+function updateBlogPost(id) {
+    console.log(id);
+
+    fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
+            method: "PUT",
+            body: JSON.stringify({
+                id: id,
+                title: titles.value,
+                body: bodys.value,
+                userId: 1,
+            }),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+            },
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            let BlogTitles = document.querySelectorAll(".blog-post-title");
+            let BlogBodies = document.querySelectorAll(".blog-post-body");
+
+            BlogTitles.forEach((BlogTitle, index) => {
+                if (index + 1 === id) {
+                    if (data.title !== "") {
+                        BlogTitle.innerHTML = data.title;
+                    }
+                }
+            });
+
+            BlogBodies.forEach((BlogBody, index) => {
+                if (index + 1 === id) {
+                    if (data.body !== "") {
+                        BlogBody.innerHTML = data.body;
+                    }
+                }
+            });
+        });
 }

@@ -909,3 +909,21 @@ footer {
 }
 
 @media (max-width: 300px) {}
+
+.flexer {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sb {
+    position: relative;
+    transition: all 1s;
+}
+
+.sb:hover {
+    cursor: pointer;
+    top: -5px;
+}
