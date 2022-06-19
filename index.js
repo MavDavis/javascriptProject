@@ -197,6 +197,8 @@ function updateBlogPost(id) {
                     console.log(id, BlogTitle, index);
                     if (data.title != "") {
                         BlogTitle.innerHTML = data.title;
+                    } else {
+                        alert("fill title for post");
                     }
                 }
             });
@@ -206,6 +208,7 @@ function updateBlogPost(id) {
                     if (data.body != "") {
                         BlogBody.innerHTML = data.body;
                     }
+                    alert("fill body for post");
                 }
             });
         });
