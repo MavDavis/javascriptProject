@@ -195,7 +195,7 @@ function updateBlogPost(id) {
             BlogTitles.forEach((BlogTitle, index) => {
                 if (index + 1 == id) {
                     console.log(id, BlogTitle, index);
-                    if (data.title != "") {
+                    if (data.title !== "") {
                         BlogTitle.innerHTML = data.title;
                     } else {
                         alert("fill title for post");
@@ -205,11 +205,14 @@ function updateBlogPost(id) {
 
             BlogBodies.forEach((BlogBody, index) => {
                 if (index + 1 == id) {
-                    if (data.body != "") {
+                    if (data.body !== "") {
                         BlogBody.innerHTML = data.body;
+                    } else {
+                        alert("fill body for post");
                     }
-                    alert("fill body for post");
                 }
             });
+            titles.value = "";
+            bodys.value = "";
         });
 }
