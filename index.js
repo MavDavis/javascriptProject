@@ -191,8 +191,8 @@ function updateBlogPost(id) {
         })
         .then((response) => response.json())
         .then((data) => {
-            let BlogTitles = document.querySelectorAll(".blog-post-title");
-            let BlogBodies = document.querySelectorAll(".blog-post-body");
+            let BlogTitles = document.querySelectorAll(".card-title");
+            let BlogBodies = document.querySelectorAll(".card-body");
 
             BlogTitles.forEach((BlogTitle, index) => {
                 if (index + 1 === id) {
