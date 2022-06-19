@@ -164,16 +164,6 @@ function hideView() {
     viewMore.classList.add("view-more-page");
 }
 
-//link in your html
-// <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-function delPost(id) {
-    let url = "https://jsonplaceholder.typicode.com/posts";
-    axios.delete(`${url}/${id}`).then(() => console.log("deleted"));
-    console.log(data);
-    let newData = data.filter((item) => item.id != id);
-    console.log(newData);
-}
-
 function updateBlogPost(id) {
     fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
             method: "PUT",
