@@ -1,4 +1,4 @@
-let form = document.getElementById("form");
+let forms = document.getElementById("form");
 let result = document.querySelector(".results");
 let url = "https://jsonplaceholder.typicode.com/posts";
 let titles = document.querySelector("input");
@@ -121,7 +121,7 @@ function runResult(data) {
     });
 }
 
-form.addEventListener("submit", (e) => {
+forms.addEventListener("submit", (e) => {
     e.preventDefault();
     fetch("https://jsonplaceholder.typicode.com/posts", {
             method: "POST",
@@ -175,8 +175,6 @@ function delPost(id) {
 }
 
 function updateBlogPost(id) {
-    console.log(id);
-
     fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
             method: "PUT",
             body: JSON.stringify({
@@ -195,16 +193,17 @@ function updateBlogPost(id) {
             let BlogBodies = document.querySelectorAll(".card-body");
 
             BlogTitles.forEach((BlogTitle, index) => {
-                if (index + 1 === id) {
-                    if (data.title !== "") {
+                if (index + 1 == id) {
+                    console.log(id, BlogTitle, index);
+                    if (data.title != "") {
                         BlogTitle.innerHTML = data.title;
                     }
                 }
             });
 
             BlogBodies.forEach((BlogBody, index) => {
-                if (index + 1 === id) {
-                    if (data.body !== "") {
+                if (index + 1 == id) {
+                    if (data.body != "") {
                         BlogBody.innerHTML = data.body;
                     }
                 }
