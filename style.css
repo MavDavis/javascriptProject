@@ -734,6 +734,9 @@ footer {
     .fa-times {
         display: none;
     }
+    .hide-view {
+        display: block;
+    }
     .first-container {
         display: flex;
         flex-direction: column;

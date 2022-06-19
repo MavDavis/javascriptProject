@@ -106,7 +106,7 @@ function runResult(data) {
             let item = "";
             item += `
             <div class="">
-            <div class="mr-auto my-5 hideView" onClick="hideView()"> <i class="fa fa-times "></i></div>
+            <div class=" my-5 hideView" onClick="hideView()"> <i class="fa fa-times hide-view ml-auto "></i></div>
              <h3 class="card-title bg-primary text-white p-3 m-0 rounded">${newData.title}</h3>
   <p class="card-body p-3">${newData.body}</p>
             </div>`;
